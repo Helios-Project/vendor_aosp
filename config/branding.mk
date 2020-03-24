@@ -1,3 +1,7 @@
+# Versioning System
+HELIOS_BASE_VERSION = 1.0
+HELIOS_CODENAME := Ten
+
 # Set all versions
 CUSTOM_BUILD_TYPE ?= UNOFFICIAL
 
@@ -13,15 +17,20 @@ CUSTOM_PLATFORM_VERSION := 10.0
 
 TARGET_PRODUCT_SHORT := $(subst aosp_,,$(CUSTOM_BUILD))
 
-CUSTOM_VERSION := PixelExperience_$(CUSTOM_BUILD)-$(CUSTOM_PLATFORM_VERSION)-$(CUSTOM_BUILD_DATE)-$(CUSTOM_BUILD_TYPE)
-CUSTOM_VERSION_PROP := ten
+HELIOS_VERSION := $(HELIOS_CODENAME)-v$(HELIOS_BASE_VERSION)-$(TARGET_PRODUCT_SHORT)-$(CUSTOM_BUILD_DATE)-$(CUSTOM_BUILD_TYPE)
+
+CUSTOM_VERSION := Helios_$(HELIOS_BASE_VERSION)_$(CUSTOM_BUILD)-$(CUSTOM_PLATFORM_VERSION)-$(CUSTOM_BUILD_DATE)-$(CUSTOM_BUILD_TYPE)
+CUSTOM_VERSION_PROP := 10
 
 CUSTOM_PROPERTIES := \
-    org.pixelexperience.version=$(CUSTOM_VERSION_PROP) \
-    org.pixelexperience.version.display=$(CUSTOM_VERSION) \
-    org.pixelexperience.build_date=$(CUSTOM_BUILD_DATE) \
-    org.pixelexperience.build_date_utc=$(CUSTOM_BUILD_DATE_UTC) \
-    org.pixelexperience.build_type=$(CUSTOM_BUILD_TYPE)
+    org.helios.version=$(HELIOS_VERSION) \
+    org.helios.version.prop=$(CUSTOM_VERSION_PROP) \
+    org.helios.version.display=$(CUSTOM_VERSION) \
+    org.helios.build_version=$(HELIOS_BASE_VERSION) \
+    org.helios.build_date=$(CUSTOM_BUILD_DATE) \
+    org.helios.build_date_utc=$(CUSTOM_BUILD_DATE_UTC) \
+    org.helios.build_type=$(CUSTOM_BUILD_TYPE) \
+    org.helios.build_codename=$(HELIOS_CODENAME)
 
 ifeq ($(CUSTOM_BUILD_TYPE), OFFICIAL)
 PRODUCT_DEFAULT_DEV_CERTIFICATE := vendor/secure/releasekey
